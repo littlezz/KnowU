@@ -175,7 +175,7 @@ def ajax_article(request):
             'headline': art.headline,
             'article_id':art.id,
             'booked_total': booked_total,
-            'favor_total': favor_total,
+            'favour_total': favor_total,
             'isfavour': isfavour,
             'isbooked': isbooked,
             'link': art.link,
