@@ -63,16 +63,29 @@ manage
 /**
  * ==ajax==
  */
-/*var cartag = $("#tag_choosing").children("div");
+var cartag = $("#tag_choosing").children("div");
 var ctag = new Array();
 for (var i = 0; i < cartag.length; i++) {
     ctag[i] = $("#" + cartag[i]['id']);
 };
 
-for (var i = 0; i < ctag.length; i++) {
-    ctag[i].click
-};
-*/
+$('#chosen-btn').click(function(){
+    var tag_post_data = new Array();
+    var flag = 0
+    for (var i = ctag.length - 1; i >= 0; i--) {
+        if (ctag[i].hasClass("chosen")) {
+            tag_post_data[flag] = ctag[i].attr("id");
+            flag++;
+        }
+    };
+
+    ajaxPost("{% url 'manage' %}", {'tags': tag_post_data}, function(content){
+        alert('完成');
+        location.pathname = "{% url 'home' %}";
+    });
+});
+
+
 </script>
 
 {% endblock %}
