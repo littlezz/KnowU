@@ -53,39 +53,27 @@ manage
 <script type="text/javascript" src="{% static 'main/js/tag.js' %}"></script>
 
 <script type="text/javascript">
-/*$(document).ready(function(){
-    $('button').click(function(){
-        ajaxPost("{% url 'manage' %}", {'article_id': 1},function(content){
-            alert('ok');
-        });
-    });
-});*/
-/**
- * ==ajax==
- */
-var cartag = $("#tag_choosing").children("div");
-var ctag = new Array();
-for (var i = 0; i < cartag.length; i++) {
-    ctag[i] = $("#" + cartag[i]['id']);
-};
-
-$('#chosen-btn').click(function(){
-    var tag_post_data = new Array();
-    var flag = 0
-    for (var i = ctag.length - 1; i >= 0; i--) {
-        if (ctag[i].hasClass("chosen")) {
-            tag_post_data[flag] = ctag[i].attr("id");
-            flag++;
-        }
+    var cartag = $("#tag_choosing").children("div");
+    var ctag = new Array();
+    for (var i = 0; i < cartag.length; i++) {
+        ctag[i] = $("#" + cartag[i]['id']);
     };
 
-        ajaxPost("{% url 'manage' %}", {'tags': tag_post_data}, function(content){
-        alert('完成');
-        location.pathname = "{% url 'home' %}";
+    $('#chosen-btn').click(function(){
+        var tag_post_data = new Array();
+        var flag = 0
+        for (var i = ctag.length - 1; i >= 0; i--) {
+            if (ctag[i].hasClass("chosen")) {
+                tag_post_data[flag] = ctag[i].attr("id");
+                flag++;
+            }
+        };
+
+            ajaxPost("{% url 'manage' %}", {'tags': tag_post_data}, function(content){
+            alert('完成');
+            location.pathname = "{% url 'home' %}";
+        });
     });
-});
-
-
 </script>
 
 {% endblock %}
