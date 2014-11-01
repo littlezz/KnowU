@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<header>
+    <div class="container">
+        <a class="logo" href="{% url 'welcome' %}" id="logo"><!--<img src="" >-->KnowU</a>
+        <a class="edit" id="edit" style="opacity:0;display:none">编辑</a>
+        <div class="right">
+            <a class="btn small span" id="favour-detail"><span class="detail"></span></a>
+        </div>
+        <ul class="favour">
+            <li>
+                <a>你好</a>
+                <a class="delete"></a>
+            </li>
+            <li>
+                <a>tag2</a>
+                <a class="delete"></a>
+            </li>
+            <li>
+                <a>树妖枢要鼠药</a>
+                <a class="delete"></a>
+            </li>
+            <li>
+                <a>处女座</a>
+                <a class="delete"></a>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<div class="row bg_header" id="top">
+    <div class="container">
+        <h1 id="headline">Title 标题</h1>
+        <p><small>来源 : <a href="" id="link">知乎</a></small></p>
+    </div>
+</div>
+
+<div class="row bg_white">
+    <div class="container" id="content">
+        <p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>
+        <p>你好你好，打得不错打得不错错</p>
+        <p>
+这里要回答两个问题：
+矛盾冲突是什么？
+戏剧的本质是什么？
+矛盾的问题黑格尔就可以解决：
+“一切事物本身都自在的是矛盾的。”
+“矛盾是一切运动与生命力的根源。事物只因为自身具有矛盾，它才会运动，才具有动力和活力。”
+
+黑格尔的理论从根本上解决了戏剧具有矛盾的原因。
+然而对事物的探求不能仅局限于泛泛而论。
+具体矛盾，具体分析。
+        </p>
+    </div>
+</div>
+
+<div class="control">
+
+    <div class="control-list">
+        <a class="icon" id="like">
+            <span class="text"><i>2</i> | 赞</span>
+            <span class="icon"></span>
+        </a>
+        
+        <a class="icon" id="star">
+            <span class="text"><i>2</i> | 收藏</span>
+            <span class="icon"></span>
+        </a>
+        
+        <a class="icon" id="dislike">
+            <span class="text">不喜欢</span>
+            <span class="icon"></span>
+        </a>
+
+        <a class="icon" id="next">
+            <span class="text">下一篇</span>
+            <span class="icon"></span>
+        </a>
+    </div>
+    <a class="control" id="control-button"></a>
+</div>
+
+<script type="text/javascript" src="{% static 'main/js/func.js' %}"></script>
+<script type="text/javascript" src="{% static 'main/js/jquery.scrollTo.min.js' %}"></script>
+
+<script type="text/javascript">
+function set_article(content) {
+    $("#headline").text(content.headline);
+    $("#link").attr("href", content.link);
+    $("#link").text(content.source_name);
+    $("#content").html(content.content);
+    $("body").data("article_id", content.article_id);
+    $("#like .text i").text(content.favor_total);
+    $("#star .text i").text(content.booked_total);
+    if (content.isfavour) {
+        $("#like").addClass("ed");
+    } else {
+        $("#like").removeClass("ed");
+    }
+    if (content.isbooked) {
+        $("#star").addClass("ed");
+    } else {
+        $("#star").removeClass("ed");
+    }
+}
+
+$(document).ready(function(){
+    ajaxGet("{% url 'article' %}",function(content){
+        set_article(content);
+    });
+    $("#next").click(function(){
+        ajaxGet("{% url 'article' %}",function(content){
+            set_article(content);
+        });
+        if ($(window).scrollTop() > 100){
+            $.scrollTo("#top", 800);
+        } else {
+            $.scrollTo("#top", 50);
+        }
+    });
+
+    $("#dislike").click(function(){
+        ajaxPost("{% url 'user_action' %}", {"article_id": $("body").data("article_id"), "mode": "dislike"});
+        ajaxGet("{% url 'article' %}",function(content){
+            set_article(content);
+        });
+        if ($(window).scrollTop() > 100){
+            $.scrollTo("#top", 800);
+        } else {
+            $.scrollTo("#top", 50);
+        }
+    });
+
+    $("#like").click(function(){
+        ajaxPost("{% url 'user_action' %}", {"article_id": $("body").data("article_id"), "mode": "favour"}, function(){
+            $("#star .text i").text(content.favor_total);
+            if (content.isfavour) {
+                $("#like").addClass("ed");
+            } else {
+                $("#like").removeClass("ed");
+            }
+        });
+    });
+});
+</script>
+
+
+{% endblock %}
