@@ -143,8 +143,18 @@ $(document).ready(function(){
             }
         });
     });
+
+    $("#star").click(function(){
+        ajaxPost("{% url 'user_action' %}", {"article_id": $("body").data("article_id"), "mode": "book"}, function(content){
+            $("#star .text i").text(content.favour_total);
+            if (content.isfavour) {
+                $("#star").addClass("ed");
+            } else {
+                $("#star").removeClass("ed");
+            }
+        });
+    });
 });
 </script>
-
 
 {% endblock %}
