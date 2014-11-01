@@ -27,10 +27,9 @@ manage
 
 </header>
 
-<div class="row bg_grey_2">
+<div class="row bg_header">
     <div class="container">
         <h1 class="center">抉择</h1>
-        <h1 class="center">{{ user.username }}</h1>
     </div>
 </div>
 
@@ -40,11 +39,11 @@ manage
         
         {% for tag in tags_all %}
         <div id="{{ tag.id }}">
-            <a class="btn tag">{{ tag.label }}</a>
+            <a class="btn purple">{{ tag.label }}</a>
         </div>
         {% endfor %}
         <div id="chosen-btn">
-            <a class="btn orange">选&nbsp;择</a>
+            <a class="btn">选&nbsp;择</a>
         </div>
     </div>
 
@@ -64,6 +63,16 @@ manage
 /**
  * ==ajax==
  */
+/*var cartag = $("#tag_choosing").children("div");
+var ctag = new Array();
+for (var i = 0; i < cartag.length; i++) {
+    ctag[i] = $("#" + cartag[i]['id']);
+};
+
+for (var i = 0; i < ctag.length; i++) {
+    ctag[i].click
+};
+*/
 </script>
 
 {% endblock %}

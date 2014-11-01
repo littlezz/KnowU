@@ -1,7 +1,8 @@
+var arIcon = $("div.control-list").children("a");
 var oIcon = new Array();
-oIcon[0] = $("a#like");
-oIcon[1] = $("a#star");
-oIcon[2] = $("a#folk");
+for (var i = 0; i < arIcon.length; i++) {
+    oIcon[i] = $("a#"+arIcon[i]["id"]);
+};
 function show_icon(i) {
     oIcon[i].animate({bottom:String(3*(i+1))+'rem'}, (1+i)*400);
 }
@@ -39,7 +40,7 @@ var list = function(id) {
                         oIcon[e].animate({bottom:String(3*(e+1)+.5)+'rem'}, (1+e)*200,
                             function(){oIcon[e].animate({bottom:String(3*(e+1))+'rem'}, 150, 
                                 function(){oIcon[e].children("span.text").animate({
-                                    width:"80px", paddingRight:"16px"}, 300);
+                                    width:"100px", paddingRight:"16px"}, 300);
                             })}
                         );
                     }, (oIcon.length-e-1)*250+100);
@@ -135,7 +136,7 @@ var favour_detail = function(id) {
         if (bEdt && !oUl.hasClass("active")) {
             oUl.addClass("active");
             $(this).stop().animate({opacity:"0"},250, function(){
-                $(this).text("取消")
+                $(this).text("完成")
                     .animate({opacity:"1"},250);
             });
         } else if (!bEdt && oUl.hasClass("active")) {

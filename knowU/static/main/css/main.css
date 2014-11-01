@@ -31,6 +31,13 @@ body {
   overflow-x: hidden;
 }
 
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
 ::webkit-selection{ background-color: #3333c0; color: white; }
    ::moz-selection{ background-color: #3333c0; color: white; }
        ::selection{ background-color: #3333c0; color: white; }
@@ -100,19 +107,9 @@ a.btn.lightblue {
 a.btn.blue,
 input[type="submit"].btn.blue,
 input[type="button"].btn.blue {
-  border-bottom-color: #19356b;
-  background-color: #3B5998;
-  color: #FFFFFF;
-}
-
-a.btn.blue:hover,
-a.btn.blue:focus,
-input[type="submit"].btn.blue:hover,
-input[type="button"].btn.blue:hover,
-input[type="submit"].btn.blue:focus,
-input[type="button"].btn.blue:focus {
   border-bottom-color: #4285F4;/*#3275E4*/
   background-color: #76A7FA;/*#6697EA*/
+  color: #FFFFFF;
 }
 
 a.btn.orange,
@@ -131,6 +128,22 @@ input[type="button"].btn.green {
   color: #FFFFFF;
 }
 
+a.btn.red,
+input[type="submit"].btn.red,
+input[type="button"].btn.red {
+  border-bottom-color: #D84437;
+  background-color: #E57368;
+  color: #FFFFFF;
+}
+
+a.btn.purple,
+input[type="submit"].btn.purple,
+input[type="button"].btn.purple {
+  border-bottom-color: #D6384E;
+  background-color: #E6588E;
+  color: #FFFFFF;
+}
+
 a.btn.tag {
   border-bottom-color: #99CCCC;
   background-color: #CCFFFF;
@@ -140,7 +153,6 @@ a.btn.tag {
   /**
    * bg_color 
    */
-
 .bg_blue_1 {background-color: #4285F4;}
 .bg_red_1 {background-color: #D84437;}
 .bg_yellow_1 {background-color: #F4B400;}
@@ -160,6 +172,29 @@ a.btn.tag {
 .bg_grey_3 {background-color: #A5C3F1;}
 .bg_color_1 {background-color: #f5dd31;}
 .bg_color_2 {background-color: #fef761;}
+.bg_header {
+  text-shadow: 0 1px 0 rgba(0,0,0,.1);
+  background-color: #6f5499;
+  background-image: -webkit-gradient(linear,left top,left bottom,from(#563d7c),to(#6f5499));
+  background-image: -webkit-linear-gradient(top,#563d7c 0,#6f5499 100%);
+  background-image: -o-linear-gradient(top,#563d7c 0,#6f5499 100%);
+  background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#563d7c', endColorstr='#6F5499', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+.row.bg_grey_1 > .container > h1,
+.row.bg_grey_2 > .container > h1,
+.row.bg_grey_3 > .container > h1,
+.row.bg_header > .container > h1 {
+  color: #FFFFFF;
+}
+
+.row.bg_header > .container > h2,
+.row.bg_header > .container > h3,
+.row.bg_header > .container > p {
+  color: #CCCCCC;
+} 
 
 .row,
 header,
@@ -233,7 +268,7 @@ header div.right > a.span {
 header span.detail,
 header span.detail::before,
 header span.detail::after {
-  background-color: #333333;
+  background-color: #0E91A1;
 }
 
 header span.detail {
@@ -263,7 +298,7 @@ header span.detail::before {
 
 header a.active > span.detail::before {
   top: 14px;
-  left: 1px;
+  left: 0;
   transform: rotate(-135deg);
 }
 
@@ -273,7 +308,7 @@ header span.detail::after {
 
 header a.active > span.detail::after {
   top: 14px;
-  left: 1px;
+  left: 0;
   transform: rotate(135deg);
 }
 
@@ -365,16 +400,13 @@ header ul.chosen.active > li > a.delete {
   text-align: center !important;
 }
 
-.row.bg_grey_1 > .container > h1,
-.row.bg_grey_2 > .container > h1,
-.row.bg_grey_3 > .container > h1 {
-  color: #FFFFFF;
-  line-height: 16px;
+.row.bg_header > .container > h1 {
+  font-size: 30px;
 }
 
 .container h1 {
   font-family: inherit;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 500;
   line-height: 2em;
   vertical-align: middle;
@@ -384,7 +416,7 @@ header ul.chosen.active > li > a.delete {
 
 .container h2 {
   font-family: inherit;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 2em;
   vertical-align: middle;
@@ -406,6 +438,19 @@ header ul.chosen.active > li > a.delete {
   font-size: inherit;
   color: #0066CC;
   text-decoration: underline;
+}
+
+.container p > small {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  color: #CCCCCC;
+}
+
+.container p > small > a {
+  color: #CCCCCC;
+  text-decoration: underline;
+
 }
 
 header > .container > div.right {
@@ -512,23 +557,23 @@ div.tag-choosing > div > a.tag {
 
 @keyframes tag-chosen
 {
-0%   {box-shadow: 0 0 20px 2px rgba(155,155,255, 1);}
-50%  {box-shadow: 0 0 5px 0 rgba(155,155,255, 1);}
-100% {box-shadow: 0 0 20px 2px rgba(155,155,255, 1);}
+0%   {box-shadow: 0 0 20px 2px rgba(200,200,200, 1);}
+50%  {box-shadow: 0 0 5px 0 rgba(200,200,200, 1);}
+100% {box-shadow: 0 0 20px 2px rgba(200,200,200, 1);}
 }
 
 @-webkit-keyframes tag-chosen /* Safari 和 Chrome */
 {
-0%   {box-shadow: 0 0 20px 2px rgba(155,155,255, 1);}
-50%  {box-shadow: 0 0 5px 0 rgba(155,155,255, 1);}
-100% {box-shadow: 0 0 20px 2px rgba(155,155,255, 1);}
+0%   {box-shadow: 0 0 20px 2px rgba(200,200,200, 1);}
+50%  {box-shadow: 0 0 5px 0 rgba(200,200,200, 1);}
+100% {box-shadow: 0 0 20px 2px rgba(200,200,200, 1);}
 }
 
 div.tag-choosing > div > a.chosen {
-  background-color: rgb(88,200,240);
-  border-color: rgb(66,180,220);
+  background-color: #CCCCCC;
+  border-color: #ABABAB;
   color: #FFFFFF;
-  box-shadow: 0 0 15px 2px rgba(200,200,255, 1);
+  box-shadow: 0 0 20px 2px rgba(200,200,200, 1);
   animation: tag-chosen 2s linear 0 infinite normal;
   -webkit-animation: tag-chosen 2s linear 0 infinite normal;
 }
@@ -653,12 +698,6 @@ div.control > div.control-list > a > span.text {
 
 }
 
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
-}
-
 div.control > div.control-list > a > span.icon::before {
   position: absolute;
   top: 0;
@@ -730,15 +769,26 @@ div.control > div.control-list > a#star.ed > span.icon::before {
   content: "\e006";
 }
 
-div.control > div.control-list > a#folk {
+div.control > div.control-list > a#dislike {
   background-color: #0F9D58;
   bottom: 0;
   right: 0;
 }
 
-div.control > div.control-list > a#folk > span.icon::before {
-  content: "\270f";
+div.control > div.control-list > a#dislike > span.icon::before {
+  content: "\e020";
 }
+
+div.control > div.control-list > a#next {
+  background-color: #D6384E;
+  bottom: 0;
+  right: 0;
+}
+
+div.control > div.control-list > a#next > span.icon::before {
+  content: "\e076";
+}
+
 
 .arrow-top,
 .arrow-bottom,

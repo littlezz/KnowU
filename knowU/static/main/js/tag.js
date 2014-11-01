@@ -73,7 +73,7 @@ var tag_detail = function(id) {
         if (bEdt && !oUl.hasClass("active")) {
             oUl.addClass("active");
             $(this).stop().animate({opacity:"0"},250, function(){
-                $(this).text("取消")
+                $(this).text("完成")
                     .animate({opacity:"1"},250);
             });
         } else if (!bEdt && oUl.hasClass("active")) {

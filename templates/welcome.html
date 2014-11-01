@@ -11,18 +11,15 @@
 </header>
 
 
-<div class="row bg_grey_2">
+<div class="row bg_header">
     <div class="container">
         <h1>Member Login</h1>
     </div>
 </div>
 
-
-
 <div id="welcome">
     <h1>HELLO</h1>
 </div>
-
 
 {% if not user.username %}
 <div class="row">
@@ -35,10 +32,14 @@
 
             <input type="hidden" id="csrf_token" name="csrf_token">
             <div>
-                {{ form.username }}
+                <label for="{{ form.username.id_for_label }}" class="usr"></label>
+                <input name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" type="text" placeholder="帐号" />
+                <!-- {{ form.username }} -->
             </div>
             <div>
-                {{ form.password }}
+                <label for="{{ form.password.id_for_label }}" class="psd"></label>
+                <input name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" type="password" placeholder="密码" />
+                <!-- {{ form.password }} -->
             </div>
             <div>
                 <input class="btn blue" name="submit" type="submit" value="登&nbsp;录" />

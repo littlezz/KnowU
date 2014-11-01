@@ -20,8 +20,8 @@ body {
 
 div.login {
   position: relative;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 16px;
+  margin-right: 16px;
   height: auto;
   background-color: transparent;
 }
@@ -29,9 +29,9 @@ div.login {
 div.login > h1 {
   display: block;
   position: relative;
-  height: 3rem;
-  padding: .5rem 0;
-  font-size: 2rem;
+  height: 48px;
+  padding: 8px 0;
+  font-size: 32px;
   font-weight: normal;
   font-family: inherit;
   font-style: normal;
@@ -48,12 +48,32 @@ div.login > form {
 div.login > form > div {
   display: block;
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
 }
 
 div.login > form > div:last-child {
   margin-bottom: 0;
 }
+
+div.login > form > div > label {
+  display: block;
+  position: absolute;
+  left: 15px;
+  top: 13px;
+  font-family: "Glyphicons Halflings";
+  color: #CCCCCC;
+  font-size: 20px;
+  z-index: 5;
+}
+
+div.login > form > div > label.usr::before {
+  content: "\e008";
+}
+
+div.login > form > div > label.psd::before {
+  content: "\e033";
+}
+
 
 div.login > form > div > input[type="text"],
 div.login > form > div > input[type="password"] {
@@ -61,10 +81,10 @@ div.login > form > div > input[type="password"] {
   position: relative;
   margin-left: 0;
   margin-right: 0;
-  height: 3rem;
+  height: 48px;
   width: 100%;
-  padding-top: .5rem;
-  padding-left: 3rem;
+  padding-top: 8px;
+  padding-left: 45px;
   background-color: #FFFFFF;
   box-sizing: border-box;
   border: 1px solid #BDBDBD;
@@ -76,7 +96,7 @@ div.login > form > div > input[type="password"] {
      -moz-transition: all linear 0.2s;
        -o-transition: all linear 0.2s;
           transition: all linear 0.2s;
-  font-size: 1.125rem;
+  font-size: 18px;
   color: #333333;
   line-height: 1em;
   vertical-align: middle;

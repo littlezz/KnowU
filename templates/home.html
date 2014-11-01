@@ -30,14 +30,15 @@
     </div>
 </header>
 
-<div class="row bg_grey_2">
+<div class="row bg_header">
     <div class="container">
-        <h1>Title 标题</h1>
+        <h1 id="headline">Title 标题</h1>
+        <p><small>来源 : <a href="" id="link">知乎</a></small></p>
     </div>
 </div>
 
 <div class="row bg_white">
-    <div class="container">
+    <div class="container" id="content">
         <p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>
         <p>你好你好，打得不错打得不错错</p>
         <p>
@@ -59,48 +60,59 @@
 
     <div class="control-list">
         <a class="icon" id="like">
-            <span class="text"><i>2</i> | like</span>
+            <span class="text"><i>2</i> | 赞</span>
             <span class="icon"></span>
         </a>
         
         <a class="icon" id="star">
-            <span class="text"><i>2</i> | star</span>
+            <span class="text"><i>2</i> | 收藏</span>
             <span class="icon"></span>
         </a>
         
-        <a class="icon" id="folk">
-            <span class="text"><i>2</i> | folk</span>
+        <a class="icon" id="dislike">
+            <span class="text">不喜欢</span>
+            <span class="icon"></span>
+        </a>
+
+        <a class="icon" id="next">
+            <span class="text">下一篇</span>
             <span class="icon"></span>
         </a>
     </div>
     <a class="control" id="control-button"></a>
 </div>
 
-<footer>
-    <div class="container footer">
-        <p>浙江大学企业俱乐部联合会百度俱乐部</p>
-        <p>Copyright © 2014 ZJU <a href="http://baiduzju.org">Baidu Club</a>. </p>
-        <p>All Rights Reserved</p>
-    </div>
-
-</footer>
-
-
-
 <script type="text/javascript" src="{% static 'main/js/func.js' %}"></script>
 
 <script type="text/javascript">
-$(document).ready(function(){
-    $('#book').click(function(){
-        ajaxPost("{% url 'book_or_favour' %}", {'article_id': 1},function(content){
-            alert('ok');
-        });
-    });
 
-    $('#article').click(function(){
-        ajaxGet("{% url 'article' %}",function(content){
-            $(h1);
-        });
+function set_article(content) {
+    $("#headline").text(content.headline);
+    $("#link").attr("href", content.link);
+    $("#link").text(content.source_name);
+    $("#content").html(content.content);
+    $("body").data("article_id", content.article_id);
+    $("#like").children("a.text").children("i").text(content.favor_total);
+    $("#star").children("a.text").children("i").text(content.booked_total);
+    if (content.isfavour) {
+        $("#like").addClass("ed");
+    } else {
+        $("#like").removeClass("ed");
+    }
+    if (content.isbooked) {
+        $("#star").addClass("ed");
+    } else {
+        $("#star").removeClass("ed");
+    }
+}
+
+$(document).ready(function(){
+/*    ajaxPost("{% url 'book_or_favour' %}", {'article_id': 1},function(content){
+        alert('ok');
+    });*/
+
+    ajaxGet("{% url 'article' %}",function(content){
+        set_article(content);
     });
 });
 </script>
