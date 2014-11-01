@@ -10,22 +10,6 @@
             <a class="btn small span" id="favour-detail"><span class="detail"></span></a>
         </div>
         <ul class="favour">
-            <li>
-                <a>你好</a>
-                <a class="delete"></a>
-            </li>
-            <li>
-                <a>tag2</a>
-                <a class="delete"></a>
-            </li>
-            <li>
-                <a>树妖枢要鼠药</a>
-                <a class="delete"></a>
-            </li>
-            <li>
-                <a>处女座</a>
-                <a class="delete"></a>
-            </li>
         </ul>
     </div>
 </header>
@@ -107,6 +91,14 @@ function set_article(content) {
 }
 
 $(document).ready(function(){
+    ajaxGet("{% url 'book_view' %}", function(content){
+        for (favours in content.item) {
+            $(".favour").append(function(){
+                '<li><a>'+favours+'</a><a class="delete"></a></li>'
+            }, 'html')
+        }
+    });
+
     ajaxGet("{% url 'article' %}",function(content){
         set_article(content);
     });
