@@ -60,14 +60,14 @@ def manage(request):
 
     elif request.method == 'POST' and request.is_ajax():
 
-        post_tags = request.POST.getlist('tags')
-
+        post_tags = request.POST.getlist('tags[]')
+        print(post_tags)
         for tag_id in post_tags:
 
             tag = get_object_or_404(Tag, id=tag_id)
             request.user.userprofile.tags.add(tag)
 
-        return redirect('home')
+        #return redirect('home')
     else:
         return HttpResponseBadRequest()
 
