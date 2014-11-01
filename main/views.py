@@ -61,7 +61,11 @@ def manage(request):
             return render(request, 'manage.html', tags_dict)
 
     elif request.method == 'POST' and request.is_ajax():
-        # TODO: add content
+        # TODO: add con
+        for tag_label in request.POST['tags']:
+            tag = get_object_or_404(Tag,label=tag_label)
+            request.user.userprofile.tags.add(tag)
+
         return redirect('home')
     else:
         return HttpResponseBadRequest()
