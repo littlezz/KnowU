@@ -70,6 +70,21 @@
 <script type="text/javascript" src="{% static 'main/js/jquery.scrollTo.min.js' %}"></script>
 
 <script type="text/javascript">
+function favour_all(content) {
+    ajaxGet("{% url 'book_view' %}", function(content){
+        for (key in content.item) {
+            $(".favour").append(function(){
+                if (content.item[key].headline.length>12) {
+                    return '<li><a data-id="'+content.item[key].id+'">'+content.item[key].headline.slice(0,12)+'...</a><a class="delete"></a></li>'
+                } else {
+                    return '<li><a data-id="'+content.item[key].id+'">'+content.item[key].headline+'</a><a class="delete"></a></li>'
+                };
+            })
+
+        }
+    });
+
+}
 function set_article(content) {
     $("#headline").text(content.headline);
     $("#link").attr("href", content.link);
@@ -80,25 +95,22 @@ function set_article(content) {
     $("#star .text i").text(content.booked_total);
     if (content.isfavour) {
         $("#like").addClass("ed");
+        $("#like").data("flag", 1);
     } else {
         $("#like").removeClass("ed");
+        $("#like").data("flag", 0);
     }
     if (content.isbooked) {
         $("#star").addClass("ed");
+        $("#star").data("flag", 1);
     } else {
         $("#star").removeClass("ed");
+        $("#star").data("flag", 0);
     }
 }
 
 $(document).ready(function(){
-    ajaxGet("{% url 'book_view' %}", function(content){
-        for (favours in content.item) {
-            $(".favour").append(function(){
-                '<li><a>'+favours+'</a><a class="delete"></a></li>'
-            }, 'html')
-        }
-    });
-
+    favour_all();
     ajaxGet("{% url 'article' %}",function(content){
         set_article(content);
     });
@@ -128,10 +140,12 @@ $(document).ready(function(){
     $("#like").click(function(){
         ajaxPost("{% url 'user_action' %}", {"article_id": $("body").data("article_id"), "mode": "favour"}, function(content){
             $("#like .text i").text(content.favour_total);
-            if (content.isfavour) {
+            if (!$("#like").data("flag")) {
                 $("#like").addClass("ed");
+                $("#like").data("flag", 1);
             } else {
                 $("#like").removeClass("ed");
+                $("#like").data("flag", 0);
             }
         });
     });
@@ -139,10 +153,12 @@ $(document).ready(function(){
     $("#star").click(function(){
         ajaxPost("{% url 'user_action' %}", {"article_id": $("body").data("article_id"), "mode": "book"}, function(content){
             $("#star .text i").text(content.book_total);
-            if (content.isbooked) {
+            if (!$("#star").data("flag")) {
                 $("#star").addClass("ed");
+                $("#star").data("flag", 1);
             } else {
                 $("#star").removeClass("ed");
+                $("#star").data("flag", 0);
             }
         });
     });
