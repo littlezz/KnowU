@@ -15,6 +15,29 @@ To DO
 - 去除看过的页面在AlgorithmX中
 
 
+数据格式
+--------------
+get article  
+
+```
+    {'content': art.content,
+            'headline': art.headline,
+            'article_id':art.id,
+            'booked_total': booked_total,
+            'favor_total': favor_total,
+            'isfavour': isfavour,
+            'isbooked': isbooked,
+
+            }
+```
+post article  
+
+```
+```
+
+
+
+
 优化
 ---------
 - 用select cache 住article的attr  

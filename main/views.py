@@ -169,5 +169,6 @@ def ajax_article(request):
             'favor_total': favor_total,
             'isfavour': isfavour,
             'isbooked': isbooked,
-
+            'link': art.link,
+            'source_name': art.source_name,
             }
