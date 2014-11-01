@@ -92,7 +92,7 @@ function set_article(content) {
     $("#link").text(content.source_name);
     $("#content").html(content.content);
     $("body").data("article_id", content.article_id);
-    $("#like .text i").text(content.favor_total);
+    $("#like .text i").text(content.favour_total);
     $("#star .text i").text(content.booked_total);
     if (content.isfavour) {
         $("#like").addClass("ed");
@@ -134,8 +134,8 @@ $(document).ready(function(){
     });
 
     $("#like").click(function(){
-        ajaxPost("{% url 'user_action' %}", {"article_id": $("body").data("article_id"), "mode": "favour"}, function(){
-            $("#star .text i").text(content.favor_total);
+        ajaxPost("{% url 'user_action' %}", {"article_id": $("body").data("article_id"), "mode": "favour"}, function(content){
+            $("#like .text i").text(content.favour_total);
             if (content.isfavour) {
                 $("#like").addClass("ed");
             } else {
