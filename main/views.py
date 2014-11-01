@@ -51,9 +51,9 @@ class Register(View):
 def manage(request):
 
     if request.method == 'GET':
-
+            user_info, created = UserProfile.objects.get_or_create(user=request.user)
             tags_all = Tag.objects.values('label','id')
-            tags_user = request.user.userprofile.tags.values('label','id')
+            tags_user = user_info.tags.values('label','id')
             tags_dict = {'tags_all': tags_all,
                          'tags_user': tags_user,
                         }
@@ -146,9 +146,14 @@ def userlogout(request):
 @ajax
 @login_required
 def ajax_article(request):
-
     user = request.user
-    art = AlgorithmX(user)
+
+    if request.method == 'GET':
+        art = AlgorithmX(user)
+    elif request.method == 'POST':
+        article_id = request.POST['article_id']
+        art = get_object_or_404(Article, id=article_id)
+
     booked_total = art.how_many_booked()
     favor_total =  art.how_many_favour()
     isbooked = True if user.userprofile.article_books.filter(id=art.id).first() else False

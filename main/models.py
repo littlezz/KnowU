@@ -7,7 +7,7 @@ from django.db import models
 
 class Tag(models.Model):
 
-    label = models.CharField(max_length=20)
+    label = models.CharField(max_length=30)
 
     def __str__(self):
         return self.label
@@ -17,8 +17,10 @@ class Tag(models.Model):
 class Article(models.Model):
 
     tags = models.ManyToManyField(Tag)
-    headline = models.CharField(max_length=30)
+    headline = models.CharField(max_length=50)
     content = models.TextField()
+    source_name = models.CharField(max_length=50)
+    link = models.URLField()
     favour = models.ManyToManyField(User, related_name='+')
 
 

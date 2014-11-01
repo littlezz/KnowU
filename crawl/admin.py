@@ -9,3 +9,4 @@ class TemArticleAdmin(admin.ModelAdmin):
 admin.site.register(models.TemArticle, TemArticleAdmin)
 
 admin.site.register(models.TemTag)
+admin.site.register(models.Xml)
