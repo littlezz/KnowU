@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    {{ block.super }}
+manage
+{% endblock %}
+
+{% block content %}
+
+
+<header>
+    <div class="container">
+        <a class="logo" href="./welcome.html"><!--<img src="" >-->KnowU</a>
+        <div class="right">
+            <a class="btn small span" id="tag-detail"><span class="detail"></span></a>
+        </div>
+        <ul class="chosen">
+            {% for tag in tags_user %}
+            <li><a>{{ tag.label }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</header>
+
+<div class="row bg_grey_2">
+    <div class="container">
+        <h1 class="center">抉择</h1>
+    </div>
+</div>
+
+<div class="row bg_grey_1">
+    <div class="container tag-choosing" id="tag_choosing">
+
+        <h1>{{ user.username }}</h1>
+        {% for tag in tags_all %}
+        <div id="{{ tag.id }}">
+            <a class="btn tag">{{ tag.label }}</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+        <a class="btn">选&nbsp;择</a>
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'main/js/tag.js' %}"></script>
+
+<script type="text/javascript">
+/*$(document).ready(function(){
+    $('button').click(function(){
+        ajaxPost("{% url 'manage' %}", {'article_id': 1},function(content){
+            alert('ok');
+        });
+    });
+});*/
+/**
+ * ==ajax==
+ */
+</script>
+
+{% endblock %}
+
+

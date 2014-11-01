@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header>
+    <div class="container">
+        <a class="logo" href="{% url 'welcome' %}"><!--<img src="" >-->KnowU</a>
+        <div class="right">
+            <a href="{% url 'welcome' %}" class="btn small">登录</a>
+        </div>
+    </div>
+</header>
+
+<div class="row bg_grey_2">
+    <div class="container">
+        <h1>Member Register</h1>
+    </div>
+</div>
+
+
+{% if not user.username %}
+<div class="row">
+    <div class="login container">
+        <form method="post" action="">
+            {% csrf_token %}
+            {% if form.errors %}
+            <p>Your username and password didn't match. Please try again.</p>
+            {% endif %}
+
+            <input type="hidden" id="csrf_token" name="csrf_token">
+            <div>
+                {{ form.username }}
+            </div>
+            <div>
+                {{ form.password1 }}
+            </div>
+            <div>
+                {{ form.password2 }}
+            </div>
+            <div>
+                <input class="btn blue" name="submit" type="submit" value="注&nbsp;册" />
+            </div>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+        <p><a href="">忘记密码</a></p>
+    </div>
+    <div class="container">
+        <h2 class="center">OR</h2>
+        <a href="{% url 'welcome' %}" class="btn orange">登&nbsp;录</a>
+    </div>
+</div>
+
+{% else %}
+    <script>location.pathname = "{% url 'manage' %}"</script>
+
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<header>
+    <div class="container">
+        <a class="logo" href="{% url 'welcome' %}"><!--<img src="" >-->KnowU</a>
+        <div class="right">
+            <a></a>
+        </div>
+    </div>
+</header>
+
+<div class="row bg_grey_2">
+    <div class="container">
+        <h1>Title 标题</h1>
+    </div>
+</div>
+
+<div class="row bg_white">
+    <div class="container">
+        <h1>Title 标题</h1>
+        <p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>
+        <p>你好你好，打得不错打得不错错</p>
+        <p>
+这里要回答两个问题：
+矛盾冲突是什么？
+戏剧的本质是什么？
+矛盾的问题黑格尔就可以解决：
+“一切事物本身都自在的是矛盾的。”
+“矛盾是一切运动与生命力的根源。事物只因为自身具有矛盾，它才会运动，才具有动力和活力。”
+
+黑格尔的理论从根本上解决了戏剧具有矛盾的原因。
+然而对事物的探求不能仅局限于泛泛而论。
+具体矛盾，具体分析。
+        </p>
+    </div>
+</div>
+
+<div class="control">
+
+    <div class="control-list">
+        <a class="icon" id="like"><span></span></a>
+        <a class="icon" id="star"><span></span></a>
+        <a class="icon" id="folk"><span></span></a>
+    </div>
+    <a class="control" id="control-button"></a>
+</div>
+
+<footer>
+    <div class="container footer">
+        <p>浙江大学企业俱乐部联合会百度俱乐部</p>
+        <p>Copyright © 2014 ZJU <a href="http://baiduzju.org">Baidu Club</a>. </p>
+        <p>All Rights Reserved</p>
+    </div>
+
+</footer>
+
+
+
+<script type="text/javascript" src="{% static 'main/js/func.js' %}"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#book').click(function(){
+        ajaxPost("{% url 'book_or_favour' %}", {'article_id': 1},function(content){
+            alert('ok');
+        });
+    });
+});
+
+
+$(document).ready(function(){
+    $('#article').click(function(){
+        ajaxGet("{% url 'article' %}",function(content){
+            alert(content.headline);
+        });
+    });
+});
+</script>
+
+    <button id="book">book</button>
+    <button id="article">article</button>
+    <div id="wr">
+
+
+    </div>
+{% endblock %}

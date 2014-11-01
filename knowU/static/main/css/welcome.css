@@ -1,0 +1,112 @@
+body {
+  background-color: #f5f6f7;
+}
+
+#welcome {
+  position: fixed;
+  margin-top: 0 !important;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#FF0000), to(#C00000));
+  transition: all 1s 2s;
+  z-index: 1000;
+}
+
+#welcome.hiden {
+  top: -100%;
+}
+
+div.login {
+  position: relative;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: auto;
+  background-color: transparent;
+}
+
+div.login > h1 {
+  display: block;
+  position: relative;
+  height: 3rem;
+  padding: .5rem 0;
+  font-size: 2rem;
+  font-weight: normal;
+  font-family: inherit;
+  font-style: normal;
+  text-align: center;
+  line-height: 1em;
+  vertical-align: middle;
+
+}
+
+div.login > form {
+  background-color: transparent;
+}
+
+div.login > form > div {
+  display: block;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+div.login > form > div:last-child {
+  margin-bottom: 0;
+}
+
+div.login > form > div > input[type="text"],
+div.login > form > div > input[type="password"] {
+  display: block;
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  height: 3rem;
+  width: 100%;
+  padding-top: .5rem;
+  padding-left: 3rem;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #BDBDBD;
+  outline: none;
+  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.075);
+     -moz-box-shadow: inset 0 0 1px rgba(0,0,0,0.075);
+          box-shadow: inset 0 0 1px rgba(0,0,0,0.075);
+  -webkit-transition: all linear 0.2s;
+     -moz-transition: all linear 0.2s;
+       -o-transition: all linear 0.2s;
+          transition: all linear 0.2s;
+  font-size: 1.125rem;
+  color: #333333;
+  line-height: 1em;
+  vertical-align: middle;
+}
+
+div.login > form > div > input[type="text"]:focus,
+div.login > form > div > input[type="password"]:focus {
+  border: 1px solid #999999;
+  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+     -moz-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+          box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+}
+
+div.form > form input[type="text"]:-moz-placeholder,
+div.form > form input[type="password"]:-moz-placeholder {
+  color: #666666;
+}
+
+div.form > form input[type="text"]::-moz-placeholder,
+div.form > form input[type="password"]::-moz-placeholder {
+  color: #666666;
+  opacity: 1;
+}
+
+div.form > form input[type="text"]:-ms-input-placeholder,
+div.form > form input[type="password"]:-ms-input-placeholder {
+  color: #666666;
+}
+
+div.form > form input[type="text"]::-webkit-input-placeholder,
+div.form > form input[type="password"]::-webkit-input-placeholder {
+  color: #666666;
+}

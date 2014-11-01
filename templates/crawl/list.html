@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    {% for art in articles %}
+        <p>{{ art }}</p>
+
+    {% endfor %}
+    <br />
+    {% if user.is_staff%}
+
+{#        <a href="{% url 'every_article_commit_and_clear' %}">我已经确认所有文章可以提交,提交之后这些临时文章将会被清除.</a>#}
+        <form action="{% url 'every_article_commit_and_clear' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit">
+        </form>
+    {% endif %}
+{% endblock %}
+

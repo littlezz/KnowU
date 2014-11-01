@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!-- <div>
+    {% if user.username %}
+        <p>hellp, {{ user.username }}</p>
+        <a href="{% url 'logout' %}">logout</a>
+        <a href="{% url 'manage' %}">管理标签</a>
+        <a href="{% url 'book_view' %}">查看收藏</a>
+    {% endif %}
+</div> -->
+
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="telephone=no" name="format-detection">
+    <link rel="apple-touch-icon" href="./img/icon.png">  <!--Safari设置保存到桌面图标 57*57px-->
+    <title>{% block title %} knowU {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'main/css/welcome.css' %}" type="text/css" />
+    <script src="{% static 'main/js/jquery-2.1.1.js' %}"></script>
+    <script src="{% static 'django_ajax/js/jquery.ajax.min.js' %}"></script>
+
+</head>
+
+<body>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
