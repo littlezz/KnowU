@@ -1,12 +1,11 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse, reverse_lazy
 from django.http import HttpResponse, JsonResponse, Http404, HttpResponseBadRequest
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.generic import View, UpdateView
+from django.views.generic import View
 from django_ajax.decorators import ajax
 from main.algorithmX import AlgorithmX
 from .models import Tag, Article, UserProfile, BookArticleMembership
@@ -16,7 +15,6 @@ class LoginRequiredMixin:
     @classmethod
     def as_view(cls, **kwargs):
         return login_required(super().as_view(**kwargs))
-
 
 
 class Register(View):
@@ -62,8 +60,11 @@ def manage(request):
 
     elif request.method == 'POST' and request.is_ajax():
 
-        for tag_id in request.POST.getlist('tags'):
-            tag = get_object_or_404(Tag,id=tag_id)
+        post_tags = request.POST.getlist('tags')
+
+        for tag_id in post_tags:
+
+            tag = get_object_or_404(Tag, id=tag_id)
             request.user.userprofile.tags.add(tag)
 
         return redirect('home')
@@ -77,26 +78,10 @@ class Home(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return render(request, 'home.html')
 
-    def post(self, request, *args, **kwargs):
-
-       pass
-
 
 @ajax
 @login_required
 def book_view(request):
-    # if request.method == 'GET':
-    #     return render(request, 'book_view.html')
-    #
-    # elif request.method == 'POST' and request.is_ajax():
-    #     try:
-    #         times = int(request.POST['times'])
-    #     except ValueError:
-    #         return HttpResponseBadRequest()
-    #
-    #     per_time = 5
-    #     userinfo = request.user.userprofile
-    #     books_quries = userinfo.article_books.all()[times:times * per_time]
 
     books_quries = request.user.userprofile.article_books.all()
     # faster!
@@ -107,8 +92,6 @@ def book_view(request):
         return {'item':items}
     else:
         return {'item':None}
-
-
 
 
 @ajax

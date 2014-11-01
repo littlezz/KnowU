@@ -135,11 +135,11 @@ def update_xml_database():
     markdownparse = MarkdownParse(rss_string)
     for source_name, xml_url, tags in markdownparse.iterparse():
         xml, created = models.Xml.objects.get_or_create(name=source_name, xml_url=xml_url)
-        if not created:
+        if created:
             xml.save()
         for tag in tags:
             tag, created = models.TemTag.objects.get_or_create(label=tag)
-            if not created:
+            if created:
                 tag.save()
             xml.tags.add(tag)
 
@@ -156,7 +156,7 @@ def update_article_database():
                                                               source_name=xml.name,
                                                               link=receive_art.link,
                                                               )
-            if not created:
+            if created:
                 article.save()
 
             for tag in xml.tags.all():
