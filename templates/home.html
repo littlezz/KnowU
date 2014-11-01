@@ -30,7 +30,7 @@
     </div>
 </header>
 
-<div class="row bg_header">
+<div class="row bg_header" id="top">
     <div class="container">
         <h1 id="headline">Title 标题</h1>
         <p><small>来源 : <a href="" id="link">知乎</a></small></p>
@@ -83,10 +83,11 @@
 </div>
 
 <script type="text/javascript" src="{% static 'main/js/func.js' %}"></script>
+<script type="text/javascript" src="{% static 'main/js/jquery.scrollTo.min.js' %}"></script>
 
 <script type="text/javascript">
-
 function set_article(content) {
+    var used_id = content.article_id;
     $("#headline").text(content.headline);
     $("#link").attr("href", content.link);
     $("#link").text(content.source_name);
@@ -110,9 +111,28 @@ $(document).ready(function(){
 /*    ajaxPost("{% url 'book_or_favour' %}", {'article_id': 1},function(content){
         alert('ok');
     });*/
-
     ajaxGet("{% url 'article' %}",function(content){
         set_article(content);
+    });
+    $("#next").click(function(){
+        ajaxGet("{% url 'article' %}",function(content){
+            set_article(content);
+        });
+        if ($(window).scrollTop() > 100){
+            $.scrollTo("#top", 800);
+        } else {
+            $.scrollTo("#top", 50);
+        }
+    });
+
+    $("#like").click(function(){
+        ajaxPost("{% url 'user_action' %}", {"article_id": used_id, "mode": "favour"});
+        $("#like").children("a.text").children("i").text(content.favor_total);
+        if (content.isfavour) {
+            $("#like").addClass("ed");
+        } else {
+            $("#like").removeClass("ed");
+        }
     });
 });
 </script>

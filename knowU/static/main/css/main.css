@@ -434,6 +434,11 @@ header ul.chosen.active > li > a.delete {
   color: #333333;
 }
 
+.container img {
+  max-width: 100%;
+  margin: 5px 0;
+}
+
 .container p > a {
   font-size: inherit;
   color: #0066CC;
