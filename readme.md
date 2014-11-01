@@ -13,6 +13,8 @@ To DO
 - favour ------done
 - 收藏页面 ----------done
 - 去除看过的页面在AlgorithmX中
+- 杀标签---------------->done
+- dislike  
 
 
 数据格式

@@ -25,7 +25,7 @@ def requests_get(url, **kwargs):
 
 class Article:
     _property_attr = ['title', 'link', 'author', 'tags']
-
+    sanitize_tag_a_pat = re.compile(r'\<a\>.*?\</a\>')
     def __init__(self, feedparser_dict):
         self._dict = feedparser_dict
 
@@ -39,9 +39,10 @@ class Article:
     @property
     def content(self):
         try:
-            return self._dict['content'][0].value
+            cont = self._dict['content'][0].value
         except KeyError:
-            return self._dict['summary']
+            cont = self._dict['summary']
+        return self.sanitize_tag_a_pat.sub('', cont)
 
 
 class RssCollect:

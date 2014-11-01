@@ -112,7 +112,7 @@ def book_view(request):
 
 @ajax
 @login_required
-def book_or_favour_article(request):
+def book_or_favour_or_dislike_article(request):
     """
     - - = +
     """
@@ -135,6 +135,9 @@ def book_or_favour_article(request):
                 article.favour.remove(user)
             except ObjectDoesNotExist:
                 article.favour.add(user)
+
+        elif mode == 'dislike':
+            user.userprofile.article_dislike.add(article)
 
         else:
             raise Http404

@@ -39,11 +39,10 @@ class UserProfile(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     article_books = models.ManyToManyField(Article,related_name='user_book', through='BookArticleMembership', blank=True)
     article_history = models.ManyToManyField(Article, related_name='user_history', blank=True)
+    article_dislike = models.ManyToManyField(Article, related_name='user_dislike', blank=True)
 
     def __str__(self):
         return self.user.username
-
-
 
 
 
