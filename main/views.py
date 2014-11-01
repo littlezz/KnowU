@@ -82,30 +82,31 @@ class Home(LoginRequiredMixin, View):
        pass
 
 
-@ajax(mandatory=False)
+@ajax
 @login_required
 def book_view(request):
-    if request.method == 'GET':
-        return render(request, 'book_view.html')
+    # if request.method == 'GET':
+    #     return render(request, 'book_view.html')
+    #
+    # elif request.method == 'POST' and request.is_ajax():
+    #     try:
+    #         times = int(request.POST['times'])
+    #     except ValueError:
+    #         return HttpResponseBadRequest()
+    #
+    #     per_time = 5
+    #     userinfo = request.user.userprofile
+    #     books_quries = userinfo.article_books.all()[times:times * per_time]
 
-    elif request.method == 'POST' and request.is_ajax():
-        try:
-            times = int(request.POST['times'])
-        except ValueError:
-            return HttpResponseBadRequest()
+    books_quries = request.user.userprofile.article_books.all()
+    # faster!
+    if books_quries.exists():
+        items = books_quries.values('headline', 'id')
 
-        per_time = 5
-        userinfo = request.user.userprofile
-        books_quries = userinfo.article_books.all()[times:times * per_time]
-
-        # faster!
-        if books_quries.exists():
-            items = books_quries.values('headline', 'id')
-
-            #items is a list contain dict
-            return {'item':items}
-        else:
-            return {'item':None}
+        #items is a list contain dict
+        return {'item':items}
+    else:
+        return {'item':None}
 
 
 
@@ -123,11 +124,11 @@ def book_or_favour_or_dislike_article(request):
 
         article = get_object_or_404(Article, id=article_id)
         if mode == 'book':
-            obj, creted = BookArticleMembership.objects.get_or_create(userinfo=user.userprofile, article=article)
-            if creted:
-                obj.delete()
-            else:
+            obj, created = BookArticleMembership.objects.get_or_create(userinfo=user.userprofile, article=article)
+            if created:
                 obj.save()
+            else:
+                obj.delete()
             return {'book_total': article.how_many_booked()}
 
         elif mode == 'favour':

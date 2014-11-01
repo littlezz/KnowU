@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Article, UserProfile
+from .models import Tag, Article, UserProfile, BookArticleMembership
 
 # Register your models here.
 
@@ -24,3 +24,5 @@ class UserProfileAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(UserProfile, UserProfileAdmin)
+
+admin.site.register(BookArticleMembership)

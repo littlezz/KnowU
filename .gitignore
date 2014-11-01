@@ -2,4 +2,3 @@
 __*
 *.py[cd]
 .idea/
-db.sqlite3
