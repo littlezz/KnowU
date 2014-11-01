@@ -10,6 +10,10 @@
             <a class="btn small span" id="favour-detail"><span class="detail"></span></a>
         </div>
         <ul class="favour">
+            <li>
+                <a data-id="28">如果你可以回到过去杀死你...</a>
+                <a class="delete"></a>
+            </li>
         </ul>
     </div>
 </header>
@@ -23,20 +27,7 @@
 
 <div class="row bg_white">
     <div class="container" id="content">
-        <p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>
-        <p>你好你好，打得不错打得不错错</p>
-        <p>
-这里要回答两个问题：
-矛盾冲突是什么？
-戏剧的本质是什么？
-矛盾的问题黑格尔就可以解决：
-“一切事物本身都自在的是矛盾的。”
-“矛盾是一切运动与生命力的根源。事物只因为自身具有矛盾，它才会运动，才具有动力和活力。”
-
-黑格尔的理论从根本上解决了戏剧具有矛盾的原因。
-然而对事物的探求不能仅局限于泛泛而论。
-具体矛盾，具体分析。
-        </p>
+        <p>正文</p>
     </div>
 </div>
 
@@ -72,19 +63,25 @@
 <script type="text/javascript">
 function favour_all(content) {
     ajaxGet("{% url 'book_view' %}", function(content){
-        for (key in content.item) {
-            $(".favour").append(function(){
+        $(".favour").html(function(){
+            var string = "";
+            for (key in content.item) {
                 if (content.item[key].headline.length>12) {
-                    return '<li><a data-id="'+content.item[key].id+'">'+content.item[key].headline.slice(0,12)+'...</a><a class="delete"></a></li>'
+                    string = string+'<li><a data-id="'+content.item[key].id+'">'+content.item[key].headline.slice(0,12)+'...</a><a class="delete"></a></li>'
                 } else {
-                    return '<li><a data-id="'+content.item[key].id+'">'+content.item[key].headline+'</a><a class="delete"></a></li>'
-                };
-            })
-
-        }
+                    string = string+'<li><a data-id="'+content.item[key].id+'">'+content.item[key].headline+'</a><a class="delete"></a></li>'
+                }
+            }
+            return string;
+        });
+        $("li a").click(function(){
+            ajaxPost("{% url 'article' %}", {"article_id": $(this).data("id")}, function(content){
+                set_article(content);
+            });
+        });
     });
-
 }
+
 function set_article(content) {
     $("#headline").text(content.headline);
     $("#link").attr("href", content.link);
@@ -160,6 +157,7 @@ $(document).ready(function(){
                 $("#star").removeClass("ed");
                 $("#star").data("flag", 0);
             }
+            favour_all();
         });
     });
 });
