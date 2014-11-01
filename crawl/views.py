@@ -27,7 +27,9 @@ def every_article_commit_and_clear(request):
         tem_arts_queries = TemArticle.objects.all()
         for tem_art in tem_arts_queries:
             art, created = Article.objects.get_or_create(headline=tem_art.headline,
-                                                         content=tem_art.content
+                                                         content=tem_art.content,
+                                                         source_name=tem_art.source_name,
+                                                         link=tem_art.link,
                                                          )
             art.save()
 
