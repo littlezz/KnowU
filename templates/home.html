@@ -38,7 +38,6 @@
 
 <div class="row bg_white">
     <div class="container">
-        <h1>Title 标题</h1>
         <p>This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph. This is a paragraph.</p>
         <p>你好你好，打得不错打得不错错</p>
         <p>
@@ -97,22 +96,14 @@ $(document).ready(function(){
             alert('ok');
         });
     });
-});
 
-
-$(document).ready(function(){
     $('#article').click(function(){
         ajaxGet("{% url 'article' %}",function(content){
-            alert(content.headline);
+            $(h1);
         });
     });
 });
 </script>
 
-    <button id="book">book</button>
-    <button id="article">article</button>
-    <div id="wr">
 
-
-    </div>
 {% endblock %}
