@@ -39,8 +39,12 @@ def AlgorithmX(user):
     query = Article.objects.filter(tags=user.userprofile.tags.all())
 
     total = query.count()
+    print('test!', total)
     if total == 0:
+        query = Article.objects.all()
         total = Article.objects.count()
+
+    print('finall', total)
     random_num = randint(0, total-1)
 
     return query[random_num]
