@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^home/$', views.Home.as_view(), name='home'),
     url(r'^article/$', views.ajax_article, name='article'),
     url(r'^logout/$', views.userlogout, name='logout'),
-    url(r'^book_or_favour_article/$', views.book_or_favour_or_dislike_article, name='user_action'),
+    url(r'^book_or_favour_or_dislike_article/$', views.book_or_favour_or_dislike_article, name='user_action'),
     url(r'^book_view/$', views.book_view, name='book_view'),
 
 )
