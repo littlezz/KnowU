@@ -79,7 +79,7 @@ $('#chosen-btn').click(function(){
         }
     };
 
-    ajaxPost("{% url 'manage' %}", {'tags': tag_post_data}, function(content){
+        ajaxPost("{% url 'manage' %}", {'tags': tag_post_data}, function(content){
         alert('完成');
         location.pathname = "{% url 'home' %}";
     });

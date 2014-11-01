@@ -62,8 +62,8 @@ def manage(request):
 
     elif request.method == 'POST' and request.is_ajax():
 
-        for tag_label in request.POST['tags']:
-            tag = get_object_or_404(Tag,label=tag_label)
+        for tag_id in request.POST.getlist('tags'):
+            tag = get_object_or_404(Tag,id=tag_id)
             request.user.userprofile.tags.add(tag)
 
         return redirect('home')
