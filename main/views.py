@@ -128,6 +128,7 @@ def book_or_favour_or_dislike_article(request):
                 obj.delete()
             else:
                 obj.save()
+            return {'book_total': article.how_many_booked()}
 
         elif mode == 'favour':
             try:
@@ -135,6 +136,7 @@ def book_or_favour_or_dislike_article(request):
                 article.favour.remove(user)
             except ObjectDoesNotExist:
                 article.favour.add(user)
+            return {'favour_total': article.how_many_favour()}
 
         elif mode == 'dislike':
             user.userprofile.article_dislike.add(article)

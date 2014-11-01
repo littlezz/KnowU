@@ -108,9 +108,7 @@ function set_article(content) {
 }
 
 $(document).ready(function(){
-/*    ajaxPost("{% url 'book_or_favour' %}", {'article_id': 1},function(content){
-        alert('ok');
-    });*/
+
     ajaxGet("{% url 'article' %}",function(content){
         set_article(content);
     });

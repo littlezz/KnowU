@@ -12,9 +12,9 @@ To DO
 - 收藏--=>+ --------done
 - favour ------done
 - 收藏页面 ----------done
-- 去除看过的页面在AlgorithmX中
+- <del>去除看过的页面在AlgorithmX中</del>
 - 杀标签---------------->done
-- dislike  
+- dislike  ------------->done
 
 
 数据格式
