@@ -10,38 +10,45 @@ manage
 
 <header>
     <div class="container">
-        <a class="logo" href="./welcome.html"><!--<img src="" >-->KnowU</a>
+        <a class="logo" href="{% url 'welcome' %}" id="logo"><!--<img src="" >-->KnowU</a>
+        <a class="edit" id="edit" style="opacity:0;display:none">编辑</a>
         <div class="right">
             <a class="btn small span" id="tag-detail"><span class="detail"></span></a>
         </div>
         <ul class="chosen">
             {% for tag in tags_user %}
-            <li><a>{{ tag.label }}</a></li>
+            <li>
+                <a>{{ tag.label }}</a>
+                <a class="delete"></a>
+            </li>
             {% endfor %}
         </ul>
     </div>
+
 </header>
 
 <div class="row bg_grey_2">
     <div class="container">
         <h1 class="center">抉择</h1>
+        <h1 class="center">{{ user.username }}</h1>
     </div>
 </div>
 
-<div class="row bg_grey_1">
-    <div class="container tag-choosing" id="tag_choosing">
 
-        <h1>{{ user.username }}</h1>
+<div class="row">
+    <div class="container tag-choosing" id="tag_choosing">
+        
         {% for tag in tags_all %}
         <div id="{{ tag.id }}">
             <a class="btn tag">{{ tag.label }}</a>
         </div>
         {% endfor %}
+        <div id="chosen-btn">
+            <a class="btn orange">选&nbsp;择</a>
+        </div>
     </div>
 
-    <div class="container">
-        <a class="btn">选&nbsp;择</a>
-    </div>
+
 </div>
 
 <script type="text/javascript" src="{% static 'main/js/tag.js' %}"></script>

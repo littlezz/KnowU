@@ -28,15 +28,20 @@ var tag_detail = function(id) {
         var ev = ev || window.event;
         if (bBtn && !oBtn.hasClass("active")) {
             oBtn.addClass("active");
-            oUl.slideDown();
-
+            oUl.stop().slideDown();
             $("body").append("<div id='background' style='position:fixed;top:0;left:0;opacity:0;width:100%;height:100%;background-color:rgba(255,255,255,.6);z-index:400'>")
             $("#background").animate({opacity:"1"}, 500);
+            $("a#edit").stop().css({display:"block"});
+            $("a#logo").stop().animate({opacity:"0"},250,function(){$(this).css({display:"none"})});
+            $("a#edit").animate({opacity:"1"},250);
         } else if (!bBtn && oBtn.hasClass("active")) {
             oBtn.removeClass("active");
-            oUl.slideUp();
+            oUl.stop().slideUp();
 
             $("#background").animate({opacity:"0"}, 300, function(){$("#background").remove();});
+            $("a#logo").stop().css({display:"block"});
+            $("a#edit").stop().animate({opacity:"0"},250,function(){$(this).css({display:"none"})});
+            $("a#logo").animate({opacity:"1"},250);
             // setTimeout(function(){$("#background").remove();},500);
         }
         bBtn = !bBtn;
@@ -46,8 +51,11 @@ var tag_detail = function(id) {
     $("body").click(function() {
         if (bBtn == false) {
             oBtn.removeClass("active");
-            oUl.slideUp();
+            oUl.stop().slideUp();
             $("#background").animate({opacity:"0"}, 300, function(){$("#background").remove();});
+            $("a#logo").stop().css({display:"block"});
+            $("a#edit").stop().animate({opacity:"0"},250,function(){$(this).css({display:"none"})});
+            $("a#logo").animate({opacity:"1"},250);
             bBtn = !bBtn;
         }
     });
@@ -55,6 +63,38 @@ var tag_detail = function(id) {
         var ev =  ev || window.event;
         ev.cancelBubble = true;
     }
+
+    var bEdt = true;
+
+    $("a#edit").click(function(ev){
+        
+        // alert(String(3*(2+1))+"rem");
+        var ev = ev || window.event;
+        if (bEdt && !oUl.hasClass("active")) {
+            oUl.addClass("active");
+            $(this).stop().animate({opacity:"0"},250, function(){
+                $(this).text("取消")
+                    .animate({opacity:"1"},250);
+            });
+        } else if (!bEdt && oUl.hasClass("active")) {
+            oUl.removeClass("active");
+            $(this).stop().animate({opacity:"0"},250, function(){
+                $(this).text("编辑")
+                    .animate({opacity:"1"},250);
+            });
+        }
+        bEdt = !bEdt;
+        ev.preventDefault();
+    });
+    $("a.delete").click(function(ev){
+        var oLi = $(this).parent();
+        oLi.slideUp(300, function(){
+            oLi.remove();
+        });
+
+        ev.preventDefault();
+    });
+
 }("#tag-detail");
 
 

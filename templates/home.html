@@ -4,10 +4,29 @@
 
 <header>
     <div class="container">
-        <a class="logo" href="{% url 'welcome' %}"><!--<img src="" >-->KnowU</a>
+        <a class="logo" href="{% url 'welcome' %}" id="logo"><!--<img src="" >-->KnowU</a>
+        <a class="edit" id="edit" style="opacity:0;display:none">编辑</a>
         <div class="right">
-            <a></a>
+            <a class="btn small span" id="favour-detail"><span class="detail"></span></a>
         </div>
+        <ul class="favour">
+            <li>
+                <a>你好</a>
+                <a class="delete"></a>
+            </li>
+            <li>
+                <a>tag2</a>
+                <a class="delete"></a>
+            </li>
+            <li>
+                <a>树妖枢要鼠药</a>
+                <a class="delete"></a>
+            </li>
+            <li>
+                <a>处女座</a>
+                <a class="delete"></a>
+            </li>
+        </ul>
     </div>
 </header>
 
@@ -40,9 +59,20 @@
 <div class="control">
 
     <div class="control-list">
-        <a class="icon" id="like"><span></span></a>
-        <a class="icon" id="star"><span></span></a>
-        <a class="icon" id="folk"><span></span></a>
+        <a class="icon" id="like">
+            <span class="text"><i>2</i> | like</span>
+            <span class="icon"></span>
+        </a>
+        
+        <a class="icon" id="star">
+            <span class="text"><i>2</i> | star</span>
+            <span class="icon"></span>
+        </a>
+        
+        <a class="icon" id="folk">
+            <span class="text"><i>2</i> | folk</span>
+            <span class="icon"></span>
+        </a>
     </div>
     <a class="control" id="control-button"></a>
 </div>

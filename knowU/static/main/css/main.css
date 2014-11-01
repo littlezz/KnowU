@@ -53,18 +53,18 @@ input[type="submit"].btn,
 input[type="button"].btn {
   position: relative;
   display: block;
-  height: 3rem;
+  height: 48px;
   width: auto;
   box-sizing: border-box;
-  border-radius: .2rem;
+  border-radius: 2px;
   border: none;
-  border-bottom: .2rem solid #BBBBBB;
+  border-bottom: 4px solid #BBBBBB;
   background-color: #EBEBEB;
   color: #333333;
-  line-height: 3rem;
+  line-height: 48px;
   vertical-align: middle;
   text-align: center;
-  font-size: 1.125rem;
+  font-size: 18px;
   font-family: inherit;
   -webkit-transition: all linear 0.2s;
      -moz-transition: all linear 0.2s;
@@ -75,14 +75,14 @@ input[type="button"].btn {
 }
 
 a.btn {
-  padding: 0 .5rem;
+  padding: 0 8px;
   text-decoration: none;
 }
 
 a.btn.small {
-  height: 3rem;
+  height: 48px;
   width: auto;
-  margin-top: .5rem;
+  margin-top: 8px;
 }
 
 input[type="submit"].btn,
@@ -132,9 +132,9 @@ input[type="button"].btn.green {
 }
 
 a.btn.tag {
-  border-bottom-color: #19356b;
-  background-color: #3B5998;
-  color: #FFFFFF;
+  border-bottom-color: #99CCCC;
+  background-color: #CCFFFF;
+  color: #141414;
 }
 
   /**
@@ -166,15 +166,15 @@ header,
 footer {
   display: block;
   width: 100%;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
 header {
   position: fixed;
   top: 0;
   left: 0;
-  height: 4rem;
+  height: 64px;
   padding: 0 !important;
   box-sizing: border-box;
   background-color: #f9f9f9;
@@ -194,27 +194,40 @@ header {
 }
 
 body > div:not(#welcome):first-of-type {
-  padding-top: 6rem !important;
+  padding-top: 96px !important;
 }
 
-header > div > a.logo {
-  height: 3rem;
-  width: 3rem;
-  margin-top: .5rem;
-  font-size: 2rem;
-  line-height: 3rem;
+header > div > a.logo,
+header > div > a.edit {
+  display: block;
+  position: absolute;
+  height: 48px;
+  margin-top: 8px;
+  font-size: 32px;
+  line-height: 48px;
   vertical-align: middle;
   color: #0E91A1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+header > div > a.edit {
+  font-size: 24px;
+  margin-left: 16px;
+}
+
+header > div > a.edit:active {
+  color: #333333;
 }
 
 header > div > a.logo > img {
-  max-height: 3rem;
+  max-height: 48px;
 }
 
 header div.right > a.span {
-  width: 3rem;
-  height: 3rem;
-  padding: .5rem;
+  width: 48px;
+  height: 48px;
+  padding: 8px;
 }
 
 header span.detail,
@@ -227,10 +240,10 @@ header span.detail {
   display: block;
   position: relative;
   content: "";
-  height: .2rem;
-  width: 1.5rem;
-  top: .3rem;
-  left: .25rem;
+  height: 0;
+  width: 24px;
+  top: 0;
+  left: 4px;
 }
 
 header span.detail::before,
@@ -239,24 +252,38 @@ header span.detail::after {
   position: absolute;
   left: 0;
   content: "";
-  height: .2rem;
-  width: 1.5rem;
+  height: 3.2px;
+  width: 24px;
+  transition: all .2s linear;
 }
 
 header span.detail::before {
-  top: 0.5rem;
+  top: 8px;
+}
+
+header a.active > span.detail::before {
+  top: 14px;
+  left: 1px;
+  transform: rotate(-135deg);
 }
 
 header span.detail::after {
-  top: 1rem;
+  top: 18px;
 }
 
+header a.active > span.detail::after {
+  top: 14px;
+  left: 1px;
+  transform: rotate(135deg);
+}
+
+header ul.favour,
 header ul.chosen {
   list-style-type: none;
   display: none;
   box-sizing: border-box;
   position: absolute;
-  top: 4rem;
+  top: 64px;
   left: 0;
   width: 100%;
   margin-left: auto;
@@ -268,39 +295,65 @@ header ul.chosen {
           box-shadow: 0 1px 4px rgba(0,0,0,0.065);
 }
 
+header ul.favour > li,
 header ul.chosen > li {
+  position: relative;
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: 3rem;
-  padding: 0 1rem;
+  height: 48px;
+  padding: 0 16px;
 }
 
+header ul.favour > li > a,
 header ul.chosen > li > a {
   display: block;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding-top: .5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-right: 32px;
   color: #141414;
-  font-size: 1.25rem;
+  font-size: 18px;
   font-family: inherit;
   line-height: 1.5em;
   text-decoration: none;
   border-bottom: 1px solid #DDDDDD;
 }
 
+header ul.favour > li > a:active,
 header ul.chosen > li > a:active {
-  background: #666666;
+  background-color: #666666;
   color: #FFFFFF;
+}
+
+header ul.favour > li > a.delete,
+header ul.chosen > li > a.delete {
+  position: absolute;
+  right: -36px;
+  top: 14px;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  height: 20px;
+  width: 20px;
+  background-image: url(../img/close.png) ;
+  transition: all .5s;
+  cursor: pointer;
+}
+
+header ul.favour.active > li > a.delete,
+header ul.chosen.active > li > a.delete {
+  right: 32px;
 }
 
 .container {
   display: block;
-  margin-right: 1rem;
-  margin-left: 1rem;
+  margin-right: 16px;
+  margin-left: 16px;
   clear: both;
 /*  
   border-bottom: 2px solid #C0C0C0;
@@ -316,12 +369,12 @@ header ul.chosen > li > a:active {
 .row.bg_grey_2 > .container > h1,
 .row.bg_grey_3 > .container > h1 {
   color: #FFFFFF;
-  line-height: 1rem;
+  line-height: 16px;
 }
 
 .container h1 {
   font-family: inherit;
-  font-size: 1.5rem;
+  font-size: 25px;
   font-weight: 500;
   line-height: 2em;
   vertical-align: middle;
@@ -331,22 +384,22 @@ header ul.chosen > li > a:active {
 
 .container h2 {
   font-family: inherit;
-  font-size: 1.25rem;
+  font-size: 18px;
   font-weight: 400;
   line-height: 2em;
   vertical-align: middle;
   text-align: left;
-  color: #666666;
+  color: #333333;
 }
 
 .container p {
   margin-top: 1em;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 16px;
   line-height: 1.5em;
   vertical-align: middle;
   text-align: left;
-  color: #666666;
+  color: #333333;
 }
 
 .container p > a {
@@ -367,26 +420,26 @@ header > .container > div.right {
      */
 div.footer {
   text-align: center;
-  padding-bottom: 1rem;
-  border-top: .1rem solid #C0C0C0;
-  padding-top: .5rem;
+  padding-bottom: 5px;
+  border-top: 1px solid #C0C0C0;
+  padding-top: 8px;
 }
 
 div.footer > p {
-  line-height: 2em;
+  line-height: 1.25em;
   vertical-align: middle;
   text-align: center;
-  font-size: .625rem;
+  font-size: 10px;
   color: #666;
 }
 
 
 .bento {
   background: #FFFFFF;
-  -webkit-border-radius: .4rem;
-     -moz-border-radius: .4rem;
-          border-radius: .4rem;
-  border: .1rem solid #DADADA;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  border: 1px solid #DADADA;
   position: relative;
 }
 
@@ -400,7 +453,7 @@ div.footer > p {
 .bento.attached + .bento {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-top: .1rem solid #DADADA;
+  border-top: 1px solid #DADADA;
 }
 
   /**
@@ -418,9 +471,9 @@ div.tag-choosing > div {
   display: block;
   position: relative;
   left: 100%;
-  height: 3rem;
-  margin-left: 1rem;
-  margin-bottom: 2rem;
+  height: 48px;
+  margin-left: 16px;
+  margin-bottom: 32px;
   overflow: visible;
 }
 
@@ -438,14 +491,14 @@ div.tag-choosing > div > a.tag {
   width: auto;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: .5rem;
+  margin-bottom: 8px;
   box-sizing: border-box;
 
   border: 2px solid #333333;
   border-radius: 4px;
   background-color: #333333;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 18px;
   font-family: inherit;
   color: #FFFFFF;
   line-height: 1.5em;
@@ -459,23 +512,23 @@ div.tag-choosing > div > a.tag {
 
 @keyframes tag-chosen
 {
-0%   {box-shadow: 0 0 15px 2px rgba(255,255,255, 1);}
-50%  {box-shadow: 0 0 5px 0 rgba(255,255,255, 1);}
-100% {box-shadow: 0 0 15px 2px rgba(255,255,255, 1);}
+0%   {box-shadow: 0 0 20px 2px rgba(155,155,255, 1);}
+50%  {box-shadow: 0 0 5px 0 rgba(155,155,255, 1);}
+100% {box-shadow: 0 0 20px 2px rgba(155,155,255, 1);}
 }
 
 @-webkit-keyframes tag-chosen /* Safari 和 Chrome */
 {
-0%   {box-shadow: 0 0 15px 2px rgba(255,255,255, 1);}
-50%  {box-shadow: 0 0 5px 0 rgba(255,255,255, 1);}
-100% {box-shadow: 0 0 15px 2px rgba(255,255,255, 1);}
+0%   {box-shadow: 0 0 20px 2px rgba(155,155,255, 1);}
+50%  {box-shadow: 0 0 5px 0 rgba(155,155,255, 1);}
+100% {box-shadow: 0 0 20px 2px rgba(155,155,255, 1);}
 }
 
 div.tag-choosing > div > a.chosen {
-  background-color: #FFFFFF;
-  border-color: #FFFFFF;
-  color: #141414;
-  box-shadow: 0 0 15px 2px rgba(255,255,255, 1);
+  background-color: rgb(88,200,240);
+  border-color: rgb(66,180,220);
+  color: #FFFFFF;
+  box-shadow: 0 0 15px 2px rgba(200,200,255, 1);
   animation: tag-chosen 2s linear 0 infinite normal;
   -webkit-animation: tag-chosen 2s linear 0 infinite normal;
 }
@@ -483,14 +536,12 @@ div.tag-choosing > div > a.chosen {
 span.tag {
   display: block;
   position: absolute;
-  width: 4rem;
-  height: 2rem;
+  width: 64px;
+  height: 32px;
   border-radius: 5px;
   background-color: #FFFFFF;
-  box-shadow: 0 0 1rem rgba(255,255,255, 1);
-
+  box-shadow: 0 0 16px rgba(255,255,255, 1);
 }
-
 
   /**
    * control part
@@ -498,8 +549,8 @@ span.tag {
    */
 div.control {
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 16px;
+  right: 16px;
   height: auto;
   width: auto;
   z-index: 1001;
@@ -509,15 +560,15 @@ div.control > a.control {
   position: absolute;
   bottom: 0;
   right: 0;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 40px;
+  width: 40px;
   background-color: #D84437;
-  border-radius: 1.25rem;
-  box-shadow: 0 .2rem .4rem rgba(0,0,0, .25);
-  font-size: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0, .25);
+  font-size: 32px;
   text-align: center;
   vertical-align: middle;
-  line-height: 2.5rem;
+  line-height: 28px;
   font-family: inherit;
   color: #FFFFFF;
   cursor: pointer;
@@ -532,10 +583,10 @@ div.control > a.control::before,
 div.control > a.control::after {
   position: absolute;
   content: "";
-  top: 1.2rem;
-  left: .75rem;
-  height: .1rem;
-  width: 1rem;
+  top: 20px;
+  left: 12px;
+  height: 1px;
+  width: 16px;
   background-color: #FFFFFF;
 }
 
@@ -545,35 +596,61 @@ div.control > a.control::after {
 
 div.control > a.control.active::before {
   transform: rotate(60deg);
-  top: 1.3rem;
-  left: .5rem;
+  top: 20px;
+  left: 8px;
 }
 
 div.control > a.control.active::after {
   transform: rotate(-60deg);
-  top: 1.3rem;
-  left: 1rem;
+  top: 20px;
+  left: 16px;
 }
 
 div.control > div.control-list {
   position: absolute;
-  bottom: .5rem;
-  right: .25rem;
+  bottom: 8px;
+  right: 4px;
 }
 
 div.control > div.control-list > a.icon {
   position: absolute;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 .2rem .4rem rgba(0,0,0, .25);
-  font-size: 2rem;
+  height: 32px;
+  width: 32px;
+  border-radius: 16px;
+  box-shadow: 0 .2px .4px rgba(0,0,0, .25);
+  font-size: 32px;
   text-align: center;
   vertical-align: middle;
-  line-height: 2.5rem;
+  line-height: 32px;
   font-family: inherit;
   color: #FFFFFF;
   cursor: pointer;
+}
+
+div.control > div.control-list > a > span.text {
+  display: block;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  right: 16px;
+  height: 32px;
+  width: 0;
+  margin-right: 0;
+  padding-right: 0;
+
+  box-sizing: border-box;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  background-color: inherit;
+
+  font-size: 14px;
+  line-height: 32px;
+  vertical-align: middle;
+  text-align: right;
+  font-weight: 400;
+  font-family: inherit;
+  color: #FFFFFF;
+
 }
 
 @font-face {
@@ -582,21 +659,21 @@ div.control > div.control-list > a.icon {
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
-div.control > div.control-list > a > span::before {
+div.control > div.control-list > a > span.icon::before {
   position: absolute;
   top: 0;
   left: 0;
-  margin-top: .6rem;
+  margin-top: 8px;
   display: block;
   font-family: "Glyphicons Halflings";
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: normal;
   font-style: normal;
   text-align: center;
   vertical-align: middle;
   line-height: 1em;
-  width: 2rem;
-  height: 1rem;
+  width: 32px;
+  height: 16px;
   color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
 }
@@ -607,11 +684,11 @@ div.control > div.control-list > a#like {
   right: 0;
 }
 
-div.control > div.control-list > a#like > span::before {
+div.control > div.control-list > a#like > span.icon::before {
   content: "\e143";
 }
 
-div.control > div.control-list > a#like.ed > span::before {
+div.control > div.control-list > a#like.ed > span.icon::before {
   content: "\e005";
 }
 
@@ -625,8 +702,8 @@ div.control > div.control-list > a#like::after {
   content: "";
   width: .6rem;
   height: .9rem;
-  border-top-right-radius: .5rem;
-  border-top-left-radius: .5rem;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   background-color: #FFFFFF;
 }
 
@@ -645,11 +722,11 @@ div.control > div.control-list > a#star {
   right: 0;
 }
 
-div.control > div.control-list > a#star > span::before {
+div.control > div.control-list > a#star > span.icon::before {
   content: "\e007";
 }
 
-div.control > div.control-list > a#star:focus > span::before {
+div.control > div.control-list > a#star.ed > span.icon::before {
   content: "\e006";
 }
 
@@ -659,47 +736,8 @@ div.control > div.control-list > a#folk {
   right: 0;
 }
 
-div.control > div.control-list > a#folk > span::before {
+div.control > div.control-list > a#folk > span.icon::before {
   content: "\270f";
-}
-
-.class-info {
-  display: none;
-  position: absolute;
-  margin-left: -1.8rem;
-  margin-top: 1rem;
-  padding: 1rem;
-  width: 14rem;
-
-  background-color: rgba(0,0,0, .85);
-  border: none;
-  -webkit-border-radius: .3rem;
-     -moz-border-radius: .3rem;
-          border-radius: .3rem;
-  pointer-events: none;
-  overflow: visible;
-  z-index: 5 !important;
-}
-
-.class-info > a {
-  color: #DDDDDD;
-}
-
-.class-info > a:nth-child(2) {
-  color: #F1F1F1;
-  font-weight: bold;
-}
-
-table.class-table td:hover > div.class-info {
-  display: block;
-  pointer-events: all;
-}
-
-.class-info > a:hover {
-  color: #141414;
-  background-color: #DDDDDD;
-  border-style: none;
-  text-decoration: none;
 }
 
 .arrow-top,
@@ -743,9 +781,8 @@ table.class-table td:hover > div.class-info {
 
 div.class-arrow {
   border-color: rgba(0,0,0, .85);
-  border-width: .5rem;
-  margin-left: 6.6rem;
-  margin-top: -2rem;
+  border-width: 8px;
+  margin-top:  32px;
 }
 
   /**
