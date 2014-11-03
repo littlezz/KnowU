@@ -34,6 +34,9 @@ class Register(View):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
+                user_info, created = UserProfile.objects.get_or_create(user=request.user)
+                if created:
+                    user_info.save()
             else:
                 return HttpResponse('None')
 
@@ -50,6 +53,9 @@ def manage(request):
 
     if request.method == 'GET':
             user_info, created = UserProfile.objects.get_or_create(user=request.user)
+            if created:
+                user_info.save()
+
             tags_all = Tag.objects.values('label','id')
             tags_user = user_info.tags.values('label','id')
             tags_dict = {'tags_all': tags_all,
@@ -61,13 +67,14 @@ def manage(request):
     elif request.method == 'POST' and request.is_ajax():
 
         post_tags = request.POST.getlist('tags[]')
-        print(post_tags)
+        if post_tags:
+            request.user.userprofile.tags.clear()
         for tag_id in post_tags:
 
             tag = get_object_or_404(Tag, id=tag_id)
             request.user.userprofile.tags.add(tag)
 
-        #return redirect('home')
+        return redirect('home')
     else:
         return HttpResponseBadRequest()
 

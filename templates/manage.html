@@ -16,12 +16,18 @@ manage
             <a class="btn small span" id="tag-detail"><span class="detail"></span></a>
         </div>
         <ul class="chosen">
-            {% for tag in tags_user %}
+            
             <li>
-                <a>{{ tag.label }}</a>
+                <a>
+                    {% for tag in tags_user %}
+                        {{ tag.label }}
+                        {% if tag != tags_user.last%}
+                        +
+                        {%endif%}
+                    {% endfor %}
+                </a>
                 <a class="delete"></a>
             </li>
-            {% endfor %}
         </ul>
     </div>
 
@@ -39,7 +45,7 @@ manage
         
         {% for tag in tags_all %}
         <div id="{{ tag.id }}">
-            <a class="btn purple">{{ tag.label }}</a>
+            <a class="btn blue">{{ tag.label }}</a>
         </div>
         {% endfor %}
         <div id="chosen-btn">
@@ -60,6 +66,11 @@ manage
     };
 
     $('#chosen-btn').click(function(){
+        var wait = "<div style='position:fixed;top:0;left:0;height:100%;width:100%;background-color:rgba(255,255,255, .5);z-index:2000;'>";
+        wait += "<div style='position:absolute;top:50%;left:50%;margin-left:-50px;width:100px;background-color:#FFFFFF;font-size:16px;color:#333333;text-align:center;padding:5px;box-shadow:0 0 2px 0 rgba(0,0,0,.25);color:#141414;border:none;border-radius:5px'>";
+        wait += "please wait...";
+        wait += "</div></div>";
+        $("body").append(wait);
         var tag_post_data = new Array();
         var flag = 0;
         for (var i = 0; i < ctag.length - 1; i++) {
@@ -70,7 +81,7 @@ manage
         };
 
         ajaxPost("{% url 'manage' %}", {'tags[]': tag_post_data}, function(content){
-            alert('完成');
+
             location.pathname = "{% url 'home' %}";
         });
     });

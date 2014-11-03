@@ -14,6 +14,7 @@ class Tag(models.Model):
 
 
 
+
 class Article(models.Model):
 
     tags = models.ManyToManyField(Tag)

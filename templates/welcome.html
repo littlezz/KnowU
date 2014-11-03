@@ -3,7 +3,7 @@
 
 <header>
     <div class="container">
-        <a class="logo" href="{% url 'welcome' %}"><!--<img src="" >-->KnowU</a>
+        <a class="logo" href="{% url 'welcome' %}">KnowU</a>
         <div class="right">
             <a href="{% url 'register' %}" class="btn small">注册</a>
         </div>
@@ -17,9 +17,7 @@
     </div>
 </div>
 
-<div id="welcome">
-    <h1>HELLO</h1>
-</div>
+
 
 {% if not user.username %}
 <div class="row">
@@ -34,12 +32,12 @@
             <div>
                 <label for="{{ form.username.id_for_label }}" class="usr"></label>
                 <input name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" type="text" placeholder="帐号" />
-                <!-- {{ form.username }} -->
+
             </div>
             <div>
                 <label for="{{ form.password.id_for_label }}" class="psd"></label>
                 <input name="{{ form.password.html_name }}" id="{{ form.password.id_for_label }}" type="password" placeholder="密码" />
-                <!-- {{ form.password }} -->
+
             </div>
             <div>
                 <input class="btn blue" name="submit" type="submit" value="登&nbsp;录" />
@@ -58,12 +56,7 @@
     <script>location.pathname = "{% url 'manage' %}"</script>
 
 {% endif %}
-<script type="text/javascript">
-$(document).ready(function(){
-    var owelcome = $("#welcome");
-    owelcome.addClass("hiden");
-})
-</script>
+
 
 
 {% endblock %}

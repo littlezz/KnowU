@@ -2,3 +2,4 @@
 __*
 *.py[cd]
 .idea/
+*uwsgi*

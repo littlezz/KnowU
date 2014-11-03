@@ -115,6 +115,7 @@ $(document).ready(function(){
         ajaxGet("{% url 'article' %}",function(content){
             set_article(content);
         });
+        
         if ($(window).scrollTop() > 100){
             $.scrollTo("#top", 800);
         } else {

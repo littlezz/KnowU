@@ -64,6 +64,7 @@ input[type="button"].btn {
   width: auto;
   box-sizing: border-box;
   border-radius: 2px;
+  -webkit-border-radius: 2px;
   border: none;
   border-bottom: 4px solid #BBBBBB;
   background-color: #EBEBEB;
@@ -73,6 +74,7 @@ input[type="button"].btn {
   text-align: center;
   font-size: 18px;
   font-family: inherit;
+  -webkit-appearance: none;
   -webkit-transition: all linear 0.2s;
      -moz-transition: all linear 0.2s;
        -o-transition: all linear 0.2s;
@@ -300,6 +302,7 @@ header a.active > span.detail::before {
   top: 14px;
   left: 0;
   transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
 }
 
 header span.detail::after {
@@ -310,6 +313,7 @@ header a.active > span.detail::after {
   top: 14px;
   left: 0;
   transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
 
 header ul.favour,
@@ -562,23 +566,23 @@ div.tag-choosing > div > a.tag {
 
 @keyframes tag-chosen
 {
-0%   {box-shadow: 0 0 20px 2px rgba(200,200,200, 1);}
-50%  {box-shadow: 0 0 5px 0 rgba(200,200,200, 1);}
-100% {box-shadow: 0 0 20px 2px rgba(200,200,200, 1);}
+0%   {box-shadow: 0 0 20px 2px rgba(155,104,104, 1);}
+50%  {box-shadow: 0 0 5px 0 rgba(155,104,104, 1);}
+100% {box-shadow: 0 0 20px 2px rgba(155,104,104, 1);}
 }
 
 @-webkit-keyframes tag-chosen /* Safari 和 Chrome */
 {
-0%   {box-shadow: 0 0 20px 2px rgba(200,200,200, 1);}
-50%  {box-shadow: 0 0 5px 0 rgba(200,200,200, 1);}
-100% {box-shadow: 0 0 20px 2px rgba(200,200,200, 1);}
+0%   {box-shadow: 0 0 20px 2px rgba(155,104,104, 1);}
+50%  {box-shadow: 0 0 5px 0 rgba(155,104,104, 1);}
+100% {box-shadow: 0 0 20px 2px rgba(155,104,104, 1);}
 }
 
 div.tag-choosing > div > a.chosen {
-  background-color: #CCCCCC;
-  border-color: #ABABAB;
+  border-bottom-color: #D6384E;
+  background-color: #E6588E;
   color: #FFFFFF;
-  box-shadow: 0 0 20px 2px rgba(200,200,200, 1);
+  box-shadow: 0 0 20px 2px rgba(155,104,104, 1);
   animation: tag-chosen 2s linear 0 infinite normal;
   -webkit-animation: tag-chosen 2s linear 0 infinite normal;
 }
@@ -642,16 +646,19 @@ div.control > a.control::after {
 
 div.control > a.control::after {
   transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
 }
 
 div.control > a.control.active::before {
   transform: rotate(60deg);
+  -webkit-transform: rotate(60deg);
   top: 20px;
   left: 8px;
 }
 
 div.control > a.control.active::after {
   transform: rotate(-60deg);
+  -webkit-transform: rotate(-60deg);
   top: 20px;
   left: 16px;
 }
@@ -753,10 +760,12 @@ div.control > div.control-list > a#like::after {
 
 div.control > div.control-list > a#like::before {
   transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 
 div.control > div.control-list > a#like::after {
   transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
   margin-left: .25rem;
 }
 */
