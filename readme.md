@@ -1,60 +1,25 @@
-To DO
-=============
+KnowU
+================
+这个参加是某公司~~创业大赛~~编程马拉松比赛的作品,花了比较多的心血,也付出了很多的时间,最后两天在现场的时候通宵写程序,30多个小时内只睡了半个多小时.  
 
-- use django-ajax  --------------done
-- finish algorithm to get a article  -----------done
-- complete the tag manage, form or ajax? --------done
-- 测试ajax是否有上下文变量 ------------------------ done
-- 使用 django compress
-- 测试接受ajax的post ------done
-- 使用through  ----------done
-- form ajax
-- 收藏--=>+ --------done
-- favour ------done
-- 收藏页面 ----------done
-- <del>去除看过的页面在AlgorithmX中</del>
-- 杀标签---------------->done
-- dislike  ------------->done
-- 对立标签
-- 对立算法
+主要的功能是根据tag推文章.文章来自后端通过rss来抓取.    
+有收藏夹功能,点赞功能.  
 
-数据格式
---------------
-get article  
+不知道以后会不会维护这个项目  
 
-```
-    {'content': art.content,
-            'headline': art.headline,
-            'article_id':art.id,
-            'booked_total': booked_total,
-            'favor_total': favor_total,
-            'isfavour': isfavour,
-            'isbooked': isbooked,
-
-            }
-```
-post article  
-
-```
-```
+开发
+-------------
+后端使用python3 和django开发.  
+前端使用html5,jquery javascript, css没有使用框架,纯手写.  
 
 
+结果
+----------
+没什么好说的,评委吊得不行啊,最喜欢问你是哪里人,什么专业这类隐私问题,还有是把你同组的~~女生~~队员叫上来之类的.计院老师就更吊了,最后表示所有组的作品都*很简单*,于是把最佳技术奖给了一个用模版拼凑的,图片*居然会滚动*的两名什么也不会的计院研究生.果然是眼光独到啊,不愧是计院的老师啊.
 
 
-优化
----------
-- 用select cache 住article的attr  
-- 重构数据库,整合book和favour到intermediate model
+收获
+------------
+To be continue....
 
-记录
-=============
-django-ajax 提供的ajaxPost方法自带了csrf, 但是使用的时候在view中接受的函数必须@ajax,不然出错.  
-对于get, 因为没有csrf的要求,所以jquery 或ajaxGet都可以.  
-使用了提供的ajax函数时后端必须有对应的@ajax, 不然出错.
 
-through  
-> The only way to create this type of relationship is to create instances of the intermediate model.  
-
-对已有数据的m2m添加through 时要清空数据,应为基础的add和remove已经失效了.  
-
-利用filter().first 决定是否存在. 不存在会返回None
