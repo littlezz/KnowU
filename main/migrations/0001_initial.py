@@ -15,9 +15,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Article',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
-                ('headline', models.CharField(max_length=30)),
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('headline', models.CharField(max_length=50)),
                 ('content', models.TextField()),
+                ('source_name', models.CharField(max_length=50)),
+                ('link', models.URLField()),
+                ('favour', models.ManyToManyField(related_name='+', to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
@@ -26,7 +29,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='BookArticleMembership',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
                 ('join_date', models.DateField(auto_now_add=True)),
                 ('article', models.ForeignKey(to='main.Article')),
             ],
@@ -37,8 +40,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Tag',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
-                ('label', models.CharField(max_length=20)),
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('label', models.CharField(max_length=30)),
             ],
             options={
             },
@@ -47,10 +50,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserProfile',
             fields=[
-                ('id', models.AutoField(serialize=False, verbose_name='ID', auto_created=True, primary_key=True)),
-                ('article_books', models.ManyToManyField(to='main.Article', related_name='user_book', blank=True, through='main.BookArticleMembership')),
-                ('article_history', models.ManyToManyField(to='main.Article', related_name='user_history', blank=True)),
-                ('tags', models.ManyToManyField(to='main.Tag', blank=True)),
+                ('id', models.AutoField(auto_created=True, serialize=False, verbose_name='ID', primary_key=True)),
+                ('article_books', models.ManyToManyField(related_name='user_book', through='main.BookArticleMembership', blank=True, to='main.Article')),
+                ('article_dislike', models.ManyToManyField(related_name='user_dislike', blank=True, to='main.Article')),
+                ('article_history', models.ManyToManyField(related_name='user_history', blank=True, to='main.Article')),
+                ('tags', models.ManyToManyField(blank=True, to='main.Tag')),
                 ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -59,7 +63,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='bookarticlemembership',
-            name='user',
+            name='userinfo',
             field=models.ForeignKey(to='main.UserProfile'),
             preserve_default=True,
         ),

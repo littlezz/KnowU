@@ -1,5 +1,6 @@
 *~
-__*
 *.py[cd]
 .idea/
 *uwsgi*
+db.sqlite3
+*/migrations/

@@ -22,7 +22,7 @@ class Article(models.Model):
     content = models.TextField()
     source_name = models.CharField(max_length=50)
     link = models.URLField()
-    favour = models.ManyToManyField(User, related_name='+')
+    favour = models.ManyToManyField(User, related_name='+', blank=True)
 
 
     def how_many_favour(self):
