@@ -1,12 +1,12 @@
 __author__ = 'zz'
 
 from functools import wraps
-from requests import Timeout
+from requests import Timeout, ConnectionError
 import socket
 import logging
 
 
-timeouts = (Timeout, socket.timeout)
+timeouts = (Timeout, socket.timeout, ConnectionError)
 
 
 def retry_connect(retry_times, timeout):

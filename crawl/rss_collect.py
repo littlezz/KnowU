@@ -10,8 +10,8 @@ logging.basicConfig(level=logging.WARNING, format='%(message)s')
 __author__ = 'zz'
 
 ##############3 CONFIG #############
-RETRY_TIME = 3
-TIMEOUT = 5
+RETRY_TIME = 2
+TIMEOUT = 3
 ###################################
 
 
