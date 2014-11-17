@@ -74,7 +74,9 @@ function favour_all(content) {
             }
             return string;
         });
+{#        TODO: this should be fix!, delete book article record should not post to this article! #}
         $("li a").click(function(){
+
             ajaxPost("{% url 'article' %}", {"article_id": $(this).data("id")}, function(content){
                 set_article(content);
             });

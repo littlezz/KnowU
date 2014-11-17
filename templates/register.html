@@ -29,13 +29,19 @@
 
             <input type="hidden" id="csrf_token" name="csrf_token">
             <div>
-                {{ form.username }}
+                <label for="{{ form.username.id_for_label }}" class="usr"></label>
+                <input name="{{ form.username.html_name }}" id="{{ form.username.id_for_label }}" type="text" placeholder="帐号" />
+
             </div>
             <div>
-                {{ form.password1 }}
+                <label for="{{ form.password1.id_for_label }}" class="psd"></label>
+                <input name="{{ form.password1.html_name }}" id="{{ form.password1.id_for_label }}" type="password" placeholder="密码" />
+
             </div>
             <div>
-                {{ form.password2 }}
+                <label for="{{ form.password2.id_for_label }}" class="psd"></label>
+                <input name="{{ form.password2.html_name }}" id="{{ form.password2.id_for_label }}" type="password" placeholder="重复密码" />
+
             </div>
             <div>
                 <input class="btn blue" name="submit" type="submit" value="注&nbsp;册" />
