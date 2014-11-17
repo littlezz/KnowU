@@ -1,5 +1,5 @@
 django==1.7.1
-django-ajax
+djangoajax
 lxml
 requests
 feedparser
