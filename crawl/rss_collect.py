@@ -25,7 +25,7 @@ def requests_get(url, **kwargs):
 
 class Article:
     _property_attr = ['title', 'link', 'author', 'tags']
-    sanitize_tag_a_pat = re.compile(r'\<a\>.*?\</a\>')
+    sanitize_tag_a_pat = re.compile(r'<a>(.|\n)*?</a>')
     def __init__(self, feedparser_dict):
         self._dict = feedparser_dict
 
