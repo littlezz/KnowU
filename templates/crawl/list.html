@@ -9,13 +9,17 @@
     {% endfor %}
     <br />
     {% if user.is_staff%}
-
-{#        <a href="{% url 'every_article_commit_and_clear' %}">我已经确认所有文章可以提交,提交之后这些临时文章将会被清除.</a>#}
+        <p>我已经确认所有文章可以提交,提交之后这些临时文章将会被清除.</p>
         <form action="{% url 'every_article_commit_and_clear' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
             <input type="submit">
         </form>
+    {% else %}
+        <br />
+        <div>
+            非管理员
+        </div>
     {% endif %}
 {% endblock %}
 

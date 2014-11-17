@@ -29,4 +29,4 @@ class Xml(models.Model):
 
 
 class CheckCommitForm(forms.Form):
-    value = forms.CharField(max_length=10,initial='ok',help_text='我已经确认所有文章可以提交,提交之后这些临时文章将会被清除.')
+    value = forms.CharField(max_length=10, initial='ok', widget=forms.HiddenInput)

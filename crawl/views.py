@@ -40,7 +40,8 @@ def every_article_commit_and_clear(request):
 
                 art.tags.add(tag)
 
-            tem_art.delete()
+            #save time, never remove the temp article
+            #tem_art.delete()
 
         return HttpResponse('ok!')
     else:
