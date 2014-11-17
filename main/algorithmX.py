@@ -36,15 +36,14 @@ def AlgorithmX(user):
     :param user:  User model
     :return: a single Article instance
     """
+    #TODO: improve performance!
     query = Article.objects.filter(tags=user.userprofile.tags.all())
 
-    total = query.count()
-    print('test!', total)
-    if total == 0:
+    if not query.exists():
         query = Article.objects.all()
-        total = Article.objects.count()
 
-    print('finall', total)
+    total = query.count()
     random_num = randint(0, total-1)
+    ret_article = query[random_num]
 
-    return query[random_num]
+    return ret_article
